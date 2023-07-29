@@ -1,0 +1,12 @@
+.body {
+  padding: 15px;
+  font-size: medium;
+}
+
+.body.dark {
+  background-color: rgb(23, 24, 26);
+  color: #fff;
+  font-variant: initial;
+  min-height: 90.8vh;
+  font-size: medium;
+}
