@@ -8,6 +8,8 @@ import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import ProtectedRoute from './pages/ProtectedRoute';
 import Profile from './pages/Profile';
+import Basket from './pages/Basket';
+import Error404 from './pages/Error';
 
 function App() {
   return (
@@ -20,7 +22,9 @@ function App() {
             <Route path="/product/:product_id" element={<ProductDetail />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/basket" element={<Basket />} />
             <ProtectedRoute path="/profile" component={Profile} />
+            <Route path="*" component={<Error404 />} />
           </Routes>
         </div>
       </div>
