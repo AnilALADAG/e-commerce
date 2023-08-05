@@ -41,7 +41,7 @@ function Basket() {
 
     emptyBasket();
     onClose();
-
+    console.log(input);
     const response = await postOrder(input);
     console.log(response);
   };

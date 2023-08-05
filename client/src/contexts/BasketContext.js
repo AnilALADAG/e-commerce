@@ -19,17 +19,23 @@ const BasketProvider = ({ children }) => {
     setItems(filtered);
   };
 
-  const removeFromBasket = (data) => {
-    const filtered = items.filter((item) => item._id !== data._id);
+  const removeFromBasket = (item_id) => {
+    const filtered = items.filter((item) => item._id !== item_id);
     setItems(filtered);
   };
 
   const emptyBasket = () => setItems([]);
 
-  const values = { items, setItems, addToBasket };
+  const values = {
+    items,
+    setItems,
+    addToBasket,
+    removeFromBasket,
+    emptyBasket,
+  };
 
   return (
-    <BasketContext.Provider values={values}>{children}</BasketContext.Provider>
+    <BasketContext.Provider value={values}>{children}</BasketContext.Provider>
   );
 };
 

@@ -7,7 +7,7 @@ function Card({ item }) {
   const { items, addToBasket } = useBasket();
 
   const findBasketItem = items.find(
-    (basket_item) => basket_item.id === item._id
+    (basket_item) => basket_item._id === item._id
   );
 
   return (

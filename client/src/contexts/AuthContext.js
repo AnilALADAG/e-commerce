@@ -1,6 +1,6 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { Flex, Spinner } from '@chakra-ui/react';
+import { useState, createContext, useEffect, useContext } from 'react';
 import { fetchLogout, fetchMe } from '../api';
-import { Spinner, Flex } from '@chakra-ui/react';
 
 const AuthContext = createContext();
 
@@ -17,6 +17,8 @@ const AuthProvider = ({ children }) => {
         setLoggedIn(true);
         setUser(me);
         setLoading(false);
+
+        console.log('me', me);
       } catch (e) {
         setLoading(false);
       }
@@ -24,8 +26,8 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (data) => {
-    setUser(data.user);
     setLoggedIn(true);
+    setUser(data.user);
 
     localStorage.setItem('access-token', data.accessToken);
     localStorage.setItem('refresh-token', data.refreshToken);
@@ -44,22 +46,24 @@ const AuthProvider = ({ children }) => {
   };
 
   const values = {
-    user,
     loggedIn,
+    user,
     login,
     logout,
   };
 
   if (loading) {
-    <Flex justifyContent="center" alignItems="center" height="100vh">
-      <Spinner
-        thickness="4px"
-        speed="0.65s"
-        emptyColor="gray.200"
-        size="xl"
-        color="red.500"
-      ></Spinner>
-    </Flex>;
+    return (
+      <Flex justifyContent="center" alignItems="center" height="100vh">
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          size="xl"
+          color="red.500"
+        />
+      </Flex>
+    );
   }
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
